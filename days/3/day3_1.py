@@ -23,30 +23,14 @@ IN = (
     .strip().split('\n')
 )
 
-from concurrent.futures import ProcessPoolExecutor
-from itertools import combinations
-
-def process_bank(bank):
-    bank = list(map(int, bank))
-    best = 0
-    n = len(bank)
-
-    for idx, jdx, kdx in combinations(range(n), 3):
-        nb = bank.copy()
-        nb.pop(idx)
-        nb.pop(jdx - 1)
-        nb.pop(kdx - 2)
-        s = int("".join(map(str, nb)))
-
-        if s > best:
-            best = s
-
-    return best
-
-
-total = 0
-with ProcessPoolExecutor() as ex:
-    for g in ex.map(process_bank, IN):
-        total += g
-print(total)
-
+sum = 0
+for bank in IN:
+    bank = [int(x) for x in bank]
+    g = 0
+    for idx in range(len(bank)):
+        for j in bank[idx:]:
+            v = bank[idx]*10 + j
+            if v > g:
+                g = v
+    sum += g
+print(sum)
