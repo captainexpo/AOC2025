@@ -32,7 +32,7 @@ def remove_duplicates_across_keys(d):
 
 # 2. Grid and Matrix Utilities
 def get_neighbors(x, y, grid):
-    directions = [(0, 1), (1, 0), (-1, 0), (0, -1)]  # 4-directional
+    directions = [(0, 1), (1, 0), (-1, 0), (0, -1), (1,1), (-1, -1), (1, -1), (-1, 1)]  # 4-directional
     neighbors = []
     for dx, dy in directions:
         nx, ny = x + dx, y + dy
