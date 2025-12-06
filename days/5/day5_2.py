@@ -71,3 +71,6 @@ for k in ranges:
     if k not in t: t.append(k)
 
 print(sum(map(lambda x: x[1] - x[0] + 1, t)))
+
+
+
