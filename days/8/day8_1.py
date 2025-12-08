@@ -1,20 +1,9 @@
-from collections import defaultdict
 from functools import reduce
 import os
-from pprint import pprint
 from math import sqrt
 from pathlib import Path
 import sys
-import itertools as it
-import re
-from disjoint_union import DisjointUnion
-import AOC_Helpers as help
 from AOC_Helpers.dsa import DSU
-import AOC_Helpers.graph_utils as gu
-import AOC_Helpers.matrix_utils as mu
-import AOC_Helpers.tuple_utils as tu
-import AOC_Helpers.file_utils as fu
-import AOC_Helpers.utils as ut
 
 cur_path = os.path.dirname(__file__)
 parent_dir = Path(__file__).resolve().parents[2]
@@ -77,11 +66,10 @@ ds = DSU()
 for k in boxes:
     ds.make_set(k)
 pos = -1
-for i in all_dist:
+for i in all_dist[:1000]:
     a,b,_ = i
     ds.union(a,b)
-    if len(ds.components()) == 1:
-        print(a,b,a[0]*b[0])
-        exit(0)
-print(ds)
 print(reduce(lambda a,b: a*b, list(sorted([len(i) for i in ds.components()], reverse=True))[0:3]))
+
+# i thought that it had to go through 10 SUCCESSFUL unions, but NOOOOO, it actually is just the first ten regardless of success
+# This actually f***ed me up :(
