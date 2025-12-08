@@ -5,11 +5,11 @@ from collections import defaultdict
 
 
 def build_graph(edges):
-    graph = defaultdict(list)
+    graph = defaultdict(set)
     for edge in edges:
         a, b = edge
-        graph[a].append(b)
-        graph[b].append(a)
+        graph[a].add(b)
+        graph[b].add(a)
     return graph
 
 
